@@ -1,0 +1,7 @@
+Control of player 1
+X	X position	3	SLIDER	X-akse	0	1.0	0.0
+Y	Y position	3	SLIDER	Y-akse	0	1.0	0.0
+Jump	The X button	1	BUTTON	Knap 1	0	0.0	0.0
+Shoot	The Square button	1	BUTTON	Knap 0	0	0.0	0.0
+Exit	The Circle button	1	BUTTON	Knap 2	0	0.0	0.0
+Options	The Start button	1	BUTTON	Knap 9	0	0.0	0.0

@@ -1,22 +1,19 @@
+//Laver vores forskellige player 
 ControlDevice player1,player2,player3;
 
+//vores spiller klasse
 class Player{
+  //forskellige relevante variable for at kunne lave og bevæge spilleren
   PVector position,velocity,movement;
   float newX,newY;
   int playerNumber;
   String userControlsName;
   float px,py;
- 
   
-   
-  
-  
+  //contructor metoden
   Player(String userControlsName_,int playerNumber_){
     userControlsName=userControlsName_;
     playerNumber=playerNumber_;
-    
-   
-    
     if(playerNumber==1){
       player1=control.filter(GCP.STICK).getMatchedDevice(userControlsName);
     }
@@ -28,7 +25,7 @@ class Player{
     }
   }
   
-  
+  //funktion for at hente controller inputs
   void getPlayerInputs(){
     if(playerNumber==1){
       px = map(player1.getSlider("X position").getValue(), -1, 1, 0, 2)-1;
@@ -51,6 +48,7 @@ class Player{
     }
   }
   
+  //funktion der bliver kaldt når man trykker på X knappen
   void pressedX(){
     
   }

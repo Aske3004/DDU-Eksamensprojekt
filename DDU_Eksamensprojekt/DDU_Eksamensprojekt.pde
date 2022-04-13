@@ -1,6 +1,19 @@
+//Game Control Plus
 import net.java.games.input.*;
 import org.gamecontrolplus.*;
 import org.gamecontrolplus.gui.*;
+
+//BezierSQLib
+import de.bezier.data.sql.*;
+import de.bezier.data.sql.mapper.*;
+SQLite db;
+
+//ControlP5
+import controlP5.*;
+ControlP5 cp5;
+
+//Hash
+import java.security.*;
 
 float px=100, py;
 
@@ -24,6 +37,8 @@ PVector player3Movement;
 
 int amountOfPlayers;
 
+PFont theFont;
+GameController gameController;
 
 
 
@@ -32,7 +47,12 @@ void setup(){
   background(255);
   control = ControlIO.getInstance(this);
   amountOfPlayers=1;
+  theFont = createFont("Arial", 20);
+  db = new SQLite(this, "Users.sqlite" );
+  db.connect();
+  cp5 = new ControlP5(this);
   
+  gameController=new GameController();
   
   
   
@@ -70,34 +90,8 @@ void setup(){
 }
 
 void draw(){
+  gameController.update();
   
-  if(amountOfPlayers==1){
-    getPlayer1Inputs();
-  }
-  if(amountOfPlayers==2){
-    getPlayer1Inputs();
-    getPlayer2Inputs();
-  }
-  if(amountOfPlayers==3){
-    getPlayer1Inputs();
-    getPlayer2Inputs();
-    getPlayer3Inputs();
-  }
-  
-  
-  
-  
-  
-  //test af størrelsesforhold og koncept med at generere ens klodser ved siden af hinanden.
-  background(255);
-  rect(300+player1Movement.x*200,300+player1Movement.y*200,100,150);
-  rect(0,800,100,100);
-  rect(100,800,100,100);
-  rect(200,800,100,100);
-  rect(300,800,100,100);
-  rect(400,800,100,100);
-  rect(500,800,100,100);
-  //println(px,py);
 }
 
 

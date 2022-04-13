@@ -21,9 +21,7 @@ class GameController {
     password_field.setFocus(false).setColorBackground(color(160)).setColorValueLabel(0);
 
     sql = new SQL();
-    //sql.createUser("Aske","hejmeddig");
-    //sql.login("Aske","hejmeddig");
-    //println(sql.login("Aske","hejmeddig"));
+
   }
 
   void update() {

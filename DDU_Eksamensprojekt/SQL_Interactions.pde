@@ -61,6 +61,12 @@ class SQL{
     return theTimeForLevel;
   }
   
+  int getAmountOfLevelsUnlocked(String userName){
+    db.query("SELECT ReachedLevel FROM Users WHERE Username='"+ userName + "'");
+    int reachedLevel = db.getInt("ReachedLevel");
+    return reachedLevel;
+  }
+  
   
   
   

@@ -6,9 +6,9 @@ void controlEvent(ControlEvent theEvent){
   if (theEvent.getName() == "Login") {
     String userName = cp5.get(Textfield.class, "Brugernavn").getText();
     String password = cp5.get(Textfield.class, "Kodeord").getText();
-    if (password != null && sql.login(userName, password)) {
+    if (password.length() > 0 && gameController.sql.login(userName, password)) {
       currentUser = userName;
-      currentUnlockedLevel = sql.getReachedLevel(userName);
+      currentUnlockedLevel = gameController.sql.getReachedLevel(userName);
       cp5.get(Textfield.class, "Brugernavn").clear();
       cp5.get(Textfield.class, "Kodeord").clear();
       cp5.getController("Brugernavn").hide();
@@ -28,9 +28,9 @@ void controlEvent(ControlEvent theEvent){
     String userName = cp5.get(Textfield.class, "Brugernavn").getText();
     String password = cp5.get(Textfield.class, "Kodeord").getText();
     println("-->"+userName+"<--");
-    if (password != "" && userName != "" && userName!=null&&password!=null) {
+    if (password.length()>0 && userName.length()>0) {
       print("xxx"+userName+"xxx");
-      sql.createUser(userName, password);
+      gameController.sql.createUser(userName, password);
       cp5.get(Textfield.class, "Brugernavn").clear();
       cp5.get(Textfield.class, "Kodeord").clear();
       textSize(20);

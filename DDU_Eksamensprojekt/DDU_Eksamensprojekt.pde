@@ -15,8 +15,6 @@ ControlP5 cp5;
 //Hash
 import java.security.*;
 
-float px=100, py;
-
 //laver vores gamecontrolplus
 ControlIO control;
 
@@ -35,25 +33,19 @@ ControlDevice player3;
 float player3XPosition,player3YPosition;
 PVector player3Movement;
 
-int amountOfPlayers;
 
-PFont theFont;
 GameController gameController;
-
+int amountOfPlayers;
 
 
 void setup(){
   size(1400,900);
-  background(255);
   control = ControlIO.getInstance(this);
-  amountOfPlayers=1;
-  theFont = createFont("Arial", 20);
   db = new SQLite(this, "Users.sqlite" );
   db.connect();
   cp5 = new ControlP5(this);
-  
   gameController=new GameController();
-  
+  amountOfPlayers=1;
   
   
   //Create inputs based on amount of players
@@ -80,18 +72,11 @@ void setup(){
     player3=control.filter(GCP.STICK).getMatchedDevice("Player3");
     player3.getButton("X").plug(this, "player3XHasBeenPressed", ControlIO.ON_RELEASE);
   }
-  
-  
-  
-  
-  
-  
-  
 }
 
 void draw(){
   gameController.update();
-  
+  println(page);
 }
 
 
@@ -108,6 +93,33 @@ void getPlayer1Inputs(){
 
 void player1XHasBeenPressed(){
     println("Jep1");
+    
+    if(page==0){
+      gameController.frontPageLoginButton.update();
+    }
+    
+    if(page==3){
+    gameController.players1.update();
+    gameController.players2.update();
+    gameController.players3.update();
+    }
+    
+    if(page==1){
+      
+      //INTERACTION WITH TEXTFIELD
+      boolean cursorPressX = width/2 < gameController.cursor.position.x && gameController.cursor.position.x < width/2 + 200;
+      boolean cursorPressY = height/2 < gameController.cursor.position.y && gameController.cursor.position.y < height/2 + 40;
+      if (cursorPressX && cursorPressY) {
+        gameController.username_field.setFocus(true);
+        gameController.password_field.setFocus(false);
+      }
+      cursorPressX = width/2 < gameController.cursor.position.x && gameController.cursor.position.x < width/2 + 200;
+      cursorPressY = height/2+100 < gameController.cursor.position.y && gameController.cursor.position.y < height/2+100 + 40;
+      if (cursorPressX && cursorPressY) {
+        gameController.username_field.setFocus(false);
+        gameController.password_field.setFocus(true);
+      }
+    } 
   }
 
 //PLAYER 2 INPUTS:

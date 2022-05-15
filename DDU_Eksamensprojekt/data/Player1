@@ -2,3 +2,4 @@ Player1
 L3X	L3 x-akse	3	SLIDER	X-akse	0	1.0	0.0
 L3Y	L3 y-akse	3	SLIDER	Y-akse	0	1.0	0.0
 X	X-key	1	BUTTON	Knap 1	0	0.0	0.0
+Options	Options-key	1	BUTTON	Knap 9	0	0.0	0.0

@@ -1,6 +1,9 @@
-class SQL{
+String currentUser;
+int currentUnlockedLevel;
+
+class SQL {
   String signingSalt = "sQLLlerkk4221€€))";
-  
+
   String getUser(String userName) {
     db.query("SELECT Username FROM Users WHERE Username='"+ userName + "'");
     String username = db.getString("userName");
@@ -10,68 +13,86 @@ class SQL{
       return "";
     }
   }
-  
+
   String getPassword(String userName) {
     db.query("SELECT Password FROM Users WHERE Username='"+ userName + "'");
     String userPassword = db.getString("Password");
     return userPassword;
   }
-  
+
   void createUser(String userName, String password) {
     password = hash(password);
     int reachedLevel = 1;
     db.query("INSERT INTO Users VALUES ('"+ userName + "', '"+ password +"',"+ reachedLevel +",null,null,null,null,null)");
   }
-  
+
   boolean login(String userName, String password) {
     password = hash(password);
     if (getUser(userName)   == "") return false;
     if (password.equals(getPassword(userName))) return true;
     else return false;
   }
-  
-  int getReachedLevel(String userName){
+
+  int getReachedLevel(String userName) {
     db.query("SELECT ReachedLevel FROM Users WHERE Username='"+ userName + "'");
     int theReachedLevel = db.getInt("ReachedLevel");
     return theReachedLevel;
   }
-  int getTimeForLevel1(String userName){
+  void updateReachedLevel(int setLevel) {
+    db.query("UPDATE Users SET ReachedLevel = '"+ setLevel + "' WHERE Username = '" +currentUser+"'");
+  }
+  void updateTimeForLevel1(int time) {
+    db.query("UPDATE Users SET Level1Time='"+time+"' WHERE Username = '"+currentUser+"'");
+  }
+  void updateTimeForLevel2(int time) {
+    db.query("UPDATE Users SET Level2Time='"+time+"' WHERE Username = '"+currentUser+"'");
+  }
+  void updateTimeForLevel3(int time) {
+    db.query("UPDATE Users SET Level3Time='"+time+"' WHERE Username = '"+currentUser+"'");
+  }
+  void updateTimeForLevel4(int time) {
+    db.query("UPDATE Users SET Level4Time='"+time+"' WHERE Username = '"+currentUser+"'");
+  }
+  void updateTimeForLevel5(int time) {
+    db.query("UPDATE Users SET Level5Time='"+time+"' WHERE Username = '"+currentUser+"'");
+  }
+
+  int getTimeForLevel1(String userName) {
     db.query("SELECT Level1Time FROM Users WHERE Username='"+ userName + "'");
     int theTimeForLevel = db.getInt("Level1Time");
     return theTimeForLevel;
   }
-  int getTimeForLevel2(String userName){
+
+
+
+  int getTimeForLevel2(String userName) {
     db.query("SELECT Level2Time FROM Users WHERE Username='"+ userName + "'");
     int theTimeForLevel = db.getInt("Level2Time");
     return theTimeForLevel;
   }
-  int getTimeForLevel3(String userName){
+  int getTimeForLevel3(String userName) {
     db.query("SELECT Level3Time FROM Users WHERE Username='"+ userName + "'");
     int theTimeForLevel = db.getInt("Level3Time");
     return theTimeForLevel;
   }
-  int getTimeForLevel4(String userName){
+  int getTimeForLevel4(String userName) {
     db.query("SELECT Level4Time FROM Users WHERE Username='"+ userName + "'");
     int theTimeForLevel = db.getInt("Level4Time");
     return theTimeForLevel;
   }
-  int getTimeForLevel5(String userName){
+  int getTimeForLevel5(String userName) {
     db.query("SELECT Level5Time FROM Users WHERE Username='"+ userName + "'");
     int theTimeForLevel = db.getInt("Level5Time");
     return theTimeForLevel;
   }
-  
-  int getAmountOfLevelsUnlocked(String userName){
-    db.query("SELECT ReachedLevel FROM Users WHERE Username='"+ userName + "'");
-    int reachedLevel = db.getInt("ReachedLevel");
-    return reachedLevel;
-  }
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
   String hash(String input) {
     try {
       MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -88,5 +109,4 @@ class SQL{
     }
     return null;
   }
-  
 }

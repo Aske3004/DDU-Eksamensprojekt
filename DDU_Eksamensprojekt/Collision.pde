@@ -116,7 +116,7 @@ void runInDraw() {
     }
     if (amountOfPlayers==2) {
       if (DynamicRectVsRect(rectangles.get(1), rectangles.get(i))) {
-        if (rectangles.get(i).type=="lavaTile") {
+        if (rectangles.get(i).type=="dangerTile") {
           //DET DER SKAL SKE HVIS LAVA ER BLEVET RØRT
           hasTouchedLava=true;
         }
@@ -155,7 +155,7 @@ void runInDraw() {
     }
     if (amountOfPlayers==3) {
       if (DynamicRectVsRect(rectangles.get(1), rectangles.get(i))) {
-        if (rectangles.get(i).type=="lavaTile") {
+        if (rectangles.get(i).type=="dangerTile") {
           //DET DER SKAL SKE HVIS LAVA ER BLEVET RØRT
           hasTouchedLava=true;
         }
@@ -187,7 +187,7 @@ void runInDraw() {
         rectangles.get(1).velocity.y+=contact_normal.y*numericVelocity.y*(1-t_hit_near);
       }
       if (DynamicRectVsRect(rectangles.get(2), rectangles.get(i))) {
-        if (rectangles.get(i).type=="lavaTile") {
+        if (rectangles.get(i).type=="dangerTile") {
           //DET DER SKAL SKE HVIS LAVA ER BLEVET RØRT
           hasTouchedLava=true;
         }
